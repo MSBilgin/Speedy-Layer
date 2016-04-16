@@ -20,6 +20,8 @@ This QGIS 2 plugin transforms a vector layer to memory layer with two clicks. Al
    
    - Transform any vector layer to a memory layer
    
+   - Choose which attribute fields will be used 
+   
    - Speed up rendering, spatial analysis, filtering by attribute operations for huge data
 
 
