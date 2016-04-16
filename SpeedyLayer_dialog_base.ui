@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>435</width>
-    <height>585</height>
+    <height>593</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -120,7 +120,7 @@
   <widget class="QPushButton" name="btnStart">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>60</x>
      <y>530</y>
      <width>111</width>
      <height>41</height>
@@ -136,7 +136,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>270</x>
      <y>530</y>
      <width>111</width>
      <height>41</height>
@@ -186,6 +186,22 @@
    </property>
    <property name="text">
     <string>Only selected features</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="helpLbl">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>570</y>
+     <width>53</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://cbsuygulama.wordpress.com/2016/04/16/speedy-layer-usage/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Help...&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
