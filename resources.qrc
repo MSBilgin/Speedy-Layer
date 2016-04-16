@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/plugins/SpeedyLayer">
+    <file>icon.png</file>
+    <file>refresh.png</file>
+    <file>remove.png</file>
+  </qresource>
+</RCC>
