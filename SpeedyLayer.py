@@ -163,7 +163,7 @@ class SpeedyLayer(object):
         return action
 
     def initGui(self):
-        """Create the menu entries and toolbar icons inside the QGIS GUI."""
+        """Generate the context menu entries and toolbar icons inside the QGIS GUI."""
 
         icon_path = ':/plugins/SpeedyLayer/icon.png'
         self.add_action(
