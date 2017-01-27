@@ -1,4 +1,4 @@
-Speedy Layer v0.7
+Speedy Layer v0.8
 ==========
 
 
