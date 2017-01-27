@@ -24,7 +24,7 @@ from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication, QVa
 from PyQt4.QtGui import QAction, QIcon, QMessageBox
 # Initialize Qt resources from file resources.py
 import resources
-from qgis.core import QgsMapLayerRegistry, QgsVectorLayer, QgsField, QgsMapLayerRegistry
+from qgis.core import QgsMapLayerRegistry, QgsVectorLayer, QgsField, QgsMapLayerRegistry, QgsMapLayer
 # Import the code for the dialog
 from SpeedyLayer_dialog import SpeedyLayerDialog
 from loader import Committer, Loader
@@ -171,6 +171,10 @@ class SpeedyLayer(object):
             text=self.tr(u'Speedy Layer'),
             callback=self.run,
             parent=self.iface.mainWindow())
+        #add contextual menu
+        self.dup_to_memory_layer_action = QAction(QIcon(icon_path), "Duplicate to memory layer", self.iface.legendInterface() )
+        self.iface.legendInterface().addLegendLayerAction(self.dup_to_memory_layer_action, "","01", QgsMapLayer.VectorLayer,True)
+        self.dup_to_memory_layer_action.triggered.connect(self.run)
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -181,6 +185,8 @@ class SpeedyLayer(object):
             self.iface.removeToolBarIcon(action)
         # remove the toolbar
         del self.toolbar
+        # remove contextual menu
+        self.iface.legendInterface().removeLegendLayerAction(self.dup_to_memory_layer_action)
 
     def process(self):
         if len(self.allVectorLayers) > 0:
@@ -246,6 +252,7 @@ class SpeedyLayer(object):
     def commitFinished(self):
         self.onStop()
         QMessageBox.information(self.dlg,'Result', "Selected layer was copied to memory and added to the Canvas")
+        self.dlg.hide()
 
     def onStop(self):
         self.dlg.progressBar.setMaximum(1)
@@ -315,10 +322,16 @@ class SpeedyLayer(object):
                     cmbLabel = layerObj.name() + ' (%d) (%s)' % (layerObj.featureCount(), self.wkbText[layerObj.wkbType()])
                 else:
                     cmbLabel = layerObj.name() + ' (%d) (%s)' % (layerObj.featureCount(), self.geometryText[layerObj.geometryType()])
-                self.dlg.cmbVectorLayer.addItem(cmbLabel)
+                self.dlg.cmbVectorLayer.addItem(cmbLabel,layerObj.id())
 
         self.selectedLayerFields = {} #this dict holds selected fields name:QVariant.Type of target layer
-
+        
+        # pre-select current layer if selected in legend interface
+        if self.iface.legendInterface().currentLayer():
+            current_idx = self.dlg.cmbVectorLayer.findData(self.iface.legendInterface().currentLayer().id())
+            if current_idx != -1:
+                self.dlg.cmbVectorLayer.setCurrentIndex(current_idx)
+        
         self.listFields()
         self.dlg.cmbVectorLayer.currentIndexChanged.connect(self.listFields)
 
