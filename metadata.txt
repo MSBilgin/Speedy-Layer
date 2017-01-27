@@ -10,7 +10,7 @@
 name=Speedy Layer
 qgisMinimumVersion=2.8
 description=Generate memory layer from vector layer. Speed up for analysis and rendering operations.
-version=0.7
+version=0.8
 author=Mehmet Selim BILGIN
 email=mselimbilgin@yahoo.com
 
@@ -23,7 +23,7 @@ repository=https://github.com/MSBilgin/Speedy-Layer
 # Recommended items:
 
 # Uncomment the following line and add your changelog:
-# changelog=
+changelog=v0.8 add context menu shortcut(contribution of Enrico Ferreguti)
 
 # Tags are comma separated with spaces allowed
 tags=feature, field, geometry, table, vector, memory
